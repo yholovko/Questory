@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,11 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
     private ConnectionResult mConnectionResult;
 
     private SignInButton btnSignIn;
+    private Button startButton;
     private TextView txtEmail;
     private LinearLayout llProfileLayout;
+    private LinearLayout questTypeLayout;
+    private LinearLayout genderTypeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +41,11 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
         setContentView(R.layout.activity_main);
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        startButton = (Button) findViewById(R.id.startButton);
+        //txtEmail = (TextView) findViewById(R.id.txtEmail);
         llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
+        questTypeLayout = (LinearLayout) findViewById(R.id.questTypeLayout);
+        genderTypeLayout = (LinearLayout) findViewById(R.id.genderTypeLayout);
 
         btnSignIn.setOnClickListener(this);
 
@@ -106,7 +113,7 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
     @Override
     public void onConnected(Bundle arg0) {
         mSignInClicked = false;
-        Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Login successful...", Toast.LENGTH_LONG).show();
         getProfileInformation();
         updateUI(true);
     }
@@ -114,7 +121,11 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
             btnSignIn.setVisibility(View.GONE);
+            llProfileLayout.setBackgroundColor(getResources().getColor(R.color.common_signin_btn_light_text_disabled));
             llProfileLayout.setVisibility(View.VISIBLE);
+            startButton.setVisibility(View.VISIBLE);
+            genderTypeLayout.setVisibility(View.VISIBLE);
+            questTypeLayout.setVisibility(View.VISIBLE);
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             llProfileLayout.setVisibility(View.GONE);
