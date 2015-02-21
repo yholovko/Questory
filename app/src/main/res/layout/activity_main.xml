@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/material_blue_grey_800"
-    android:padding="10dp"
+    android:padding="0dp"
     tools:context=".MainActivity" >
 
     <LinearLayout
@@ -12,6 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
+        android:background="@mipmap/mothermotherland"
         android:orientation="horizontal"
         android:visibility="visible">
             <TextView
@@ -27,5 +28,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="0dp"
+        />
 </LinearLayout>
