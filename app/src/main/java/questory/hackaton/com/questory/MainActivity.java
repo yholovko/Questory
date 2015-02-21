@@ -128,6 +128,7 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
             llProfileLayout.setBackgroundColor(getResources().getColor(R.color.common_signin_btn_light_text_disabled));
             llProfileLayout.setVisibility(View.VISIBLE);
             startButton.setVisibility(View.VISIBLE);
+            startButton.setOnClickListener(this);
             genderTypeLayout.setVisibility(View.VISIBLE);
             questTypeLayout.setVisibility(View.VISIBLE);
         } else {
@@ -173,6 +174,10 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
                     mSignInClicked = true;
                     resolveSignInError();
                 }
+                break;
+            case R.id.startButton:
+                Intent intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
                 break;
         }
     }

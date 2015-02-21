@@ -4,4 +4,7 @@
 
     <!-- Button text -->
     <string name="btn_logout_from_google">Logout from Google</string>
+
+    <!-- MapsActivity -->
+    <string name="user_location">Вы находитесь здесь</string>
 </resources>
