@@ -32,6 +32,7 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
     private SignInButton btnSignIn;
     private Button startButton;
     private TextView txtEmail;
+    private TextView scoresTextView;
     private LinearLayout llProfileLayout;
     private LinearLayout questTypeLayout;
     private LinearLayout genderTypeLayout;
@@ -46,7 +47,7 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
         startButton = (Button) findViewById(R.id.startButton);
-        //txtEmail = (TextView) findViewById(R.id.txtEmail);
+        scoresTextView = (TextView) findViewById(R.id.scoresTextView);
         llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
         questTypeLayout = (LinearLayout) findViewById(R.id.questTypeLayout);
         genderTypeLayout = (LinearLayout) findViewById(R.id.genderTypeLayout);
@@ -125,12 +126,18 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
             btnSignIn.setVisibility(View.GONE);
+
             llProfileLayout.setBackgroundColor(getResources().getColor(R.color.common_signin_btn_light_text_disabled));
             llProfileLayout.setVisibility(View.VISIBLE);
+
             startButton.setVisibility(View.VISIBLE);
             startButton.setOnClickListener(this);
+
             genderTypeLayout.setVisibility(View.VISIBLE);
             questTypeLayout.setVisibility(View.VISIBLE);
+            scoresTextView.setVisibility(View.VISIBLE);
+
+            generateMainActivityText();
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             llProfileLayout.setVisibility(View.GONE);
@@ -144,6 +151,7 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
 
                 //String personName = currentPerson.getDisplayName();
                 String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
+                int gender = currentPerson.getGender();
 
                 txtEmail.setText(email);
             } else {
@@ -180,5 +188,11 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
                 startActivity(intent);
                 break;
         }
+    }
+
+    private void generateMainActivityText(){
+        scoresTextView.setText("Рахунок: "+ "" +"$");
+        //send request with type of quest
+        //waiting
     }
 }

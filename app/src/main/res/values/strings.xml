@@ -6,15 +6,17 @@
     <string name="btn_logout_from_google">Logout from Google</string>
 
     <!-- MapsActivity -->
-    <string name="user_location">Вы находитесь здесь</string>
-    <string name="task">Задание...\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test</string>
-    <string name="answer">Ответ...</string>
-    <string name="btn_send_answer">Ответить</string>
-    <string name="dlg_penalty_title">Цена подсказки</string>
-    <string name="dlg_penalty_help">Получить подсказку за -5 баллов</string>
-    <string name="dlg_penalty_answer">Получить ответ за -10 баллов</string>
-    <string name="dlg_penalty_ok">Хорошо</string>
-    <string name="dlg_penalty_cancel">Нет, спасибо!</string>
-    <string name="dlg_help_title">Подсказка</string>
+    <string name="user_location">Ваше місцезнаходження</string>
+    <string name="task">Завдання...\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test\n Test</string>
+    <string name="answer">Відповідь...</string>
+    <string name="btn_send_answer">Відповісти</string>
+    <string name="dlg_penalty_title">Ціна підказки</string>
+    <string name="dlg_penalty_help">Отримати підказку (-5 балів)</string>
+    <string name="dlg_penalty_answer">Отримати відповідь (-10 балів)</string>
+    <string name="dlg_penalty_ok">Добре</string>
+    <string name="dlg_penalty_cancel">Ні, дякую!</string>
+    <string name="dlg_help_title">Підказка</string>
     <string name="dlg_help_message">Здесь мы что-то подсказываем...</string>
+
+    <string name="start_quest">Почати квест</string>
 </resources>
