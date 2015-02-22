@@ -24,6 +24,7 @@
                 android:paddingRight="10dp"
                 android:textColor="@color/background_material_dark"
                 android:text="Рахунок: 100"
+                android:visibility="gone"
                 />
             <LinearLayout
                 android:id="@+id/questTypeLayout"
@@ -32,8 +33,82 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:visibility="visible">
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp">
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Квест по Києву"
+                        android:textSize="30dp"
+                        android:textColor="@android:color/white"
+                        android:id="@+id/outdoorRadioButton"
+                        android:checked="true"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/outdoorQuestionsTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="30dp"
+                            android:textColor="@android:color/white"/>
+                        <TextView
+                            android:id="@+id/outdoorRoomSizeTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="30dp"
+                            android:textColor="@android:color/white"
+                            android:gravity="right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="10dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/romanticRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Романтичний квест"
+                        android:textSize="30dp"
+                        android:textColor="@android:color/white"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/romanticQuestionsTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="30dp"
+                            android:textColor="@android:color/white"/>
+                        <TextView
+                            android:id="@+id/romanticRoomSizeTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="30dp"
+                            android:textColor="@android:color/white"
+                            android:gravity="right"/>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
         <Button
@@ -44,7 +119,7 @@
             android:background="@drawable/btn_color"
             android:textColor="@android:color/white"
             android:text="@string/start_quest"
-            android:visibility="visible"
+            android:visibility="gone"
             />
     </LinearLayout>
 

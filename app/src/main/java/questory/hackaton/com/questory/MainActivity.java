@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,14 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
     private LinearLayout llProfileLayout;
     private LinearLayout questTypeLayout;
 
+    private TextView outdoorQuestionsTextView;
+    private TextView outdoorRoomSizeTextView;
+    private TextView romanticQuestionsTextView;
+    private TextView romanticRoomSizeTextView;
+
+    private RadioButton romanticRadioButton;
+    private RadioButton outdoorRadioButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +57,16 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
         scoresTextView = (TextView) findViewById(R.id.scoresTextView);
         llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
         questTypeLayout = (LinearLayout) findViewById(R.id.questTypeLayout);
+        outdoorQuestionsTextView = (TextView) findViewById(R.id.outdoorQuestionsTextView);
+        outdoorRoomSizeTextView = (TextView) findViewById(R.id.outdoorRoomSizeTextView);
+        romanticQuestionsTextView = (TextView) findViewById(R.id.romanticQuestionsTextView);
+        romanticRoomSizeTextView = (TextView) findViewById(R.id.romanticRoomSizeTextView);
+        outdoorRadioButton = (RadioButton) findViewById(R.id.outdoorRadioButton);
+        romanticRadioButton = (RadioButton) findViewById(R.id.romanticRadioButton);
 
         btnSignIn.setOnClickListener(this);
+        outdoorRadioButton.setOnClickListener(this);
+        romanticRadioButton.setOnClickListener(this);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -133,6 +150,8 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
             questTypeLayout.setVisibility(View.VISIBLE);
             scoresTextView.setVisibility(View.VISIBLE);
 
+
+
             generateMainActivityText();
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
@@ -177,15 +196,32 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
                 }
                 break;
             case R.id.startButton:
+                //send request with type of quest and waiting
+
                 Intent intent = new Intent(this, MapsActivity.class);
                 startActivity(intent);
+
+                break;
+            case R.id.outdoorRadioButton:
+                outdoorRadioButton.setChecked(true);
+                romanticRadioButton.setChecked(false);
+                break;
+            case R.id.romanticRadioButton:
+                outdoorRadioButton.setChecked(false);
+                romanticRadioButton.setChecked(true);
                 break;
         }
     }
 
     private void generateMainActivityText(){
         scoresTextView.setText("Рахунок: "+ "" +"$");
-        //send request with type of quest
-        //waiting
+
+        outdoorRadioButton.setText("Квест по Києву");
+        outdoorQuestionsTextView.setText("10 завдань");
+        outdoorRoomSizeTextView.setText("3 із 4");
+
+        romanticRadioButton.setText("Романтичний квест");
+        romanticQuestionsTextView.setText("10 завдань");
+        romanticRoomSizeTextView.setText("1 із 4");
     }
 }
