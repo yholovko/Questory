@@ -1,10 +1,16 @@
 package questory.hackaton.com.questory;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,16 +18,26 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements LocationListener {
+public class MapsActivity extends FragmentActivity implements LocationListener, View.OnClickListener {
+
+    ImageButton btnHelp;
+    Button btnSendAnswer;
+    EditText etAnswer;
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    LocationManager lm;
-    LatLng ImHere;
+    private LocationManager lm;
+    private LatLng ImHere;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        btnHelp = (ImageButton) findViewById(R.id.btn_help);
+        btnHelp.setOnClickListener(this);
+
+        etAnswer = (EditText) findViewById(R.id.etAnswer);
+
         setUpMapIfNeeded();
     }
 
@@ -55,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
      */
     private void setUpMap() {
         lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10f, this);
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 300, 10f, this);
 
     }
 
@@ -68,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ImHere, 150));
 
         // Zoom in, animating the camera.
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(100), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 
     @Override
@@ -84,5 +100,56 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_help:
+                askAboutPenalty();
+                break;
+        }
+    }
+
+    private void askAboutPenalty(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(this.getResources().getString(R.string.dlg_penalty_title));
+
+        final String[] helps = {this.getResources().getString(R.string.dlg_penalty_help),
+                                this.getResources().getString(R.string.dlg_penalty_answer),};
+
+        builder.setItems(helps, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                switch(item){
+                    case 0:
+                        showHelp();
+                        break;
+                    case 1:
+                        showAnswer();
+                        break;
+                }
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void showHelp(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(this.getResources().getString(R.string.dlg_help_title))
+                .setMessage(this.getResources().getString(R.string.dlg_help_message))
+                .setNegativeButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void showAnswer(){
+        etAnswer.setText("Ответ!");
     }
 }
