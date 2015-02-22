@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +28,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private LocationManager lm;
     private LatLng ImHere;
+    private LinearLayout mapsLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
         btnHelp.setOnClickListener(this);
 
         etAnswer = (EditText) findViewById(R.id.etAnswer);
+        mapsLinearLayout = (LinearLayout) findViewById(R.id.mapsLinearLayout);
+        mapsLinearLayout.setBackgroundColor(getResources().getColor(R.color.common_signin_btn_light_text_disabled));
 
         setUpMapIfNeeded();
     }

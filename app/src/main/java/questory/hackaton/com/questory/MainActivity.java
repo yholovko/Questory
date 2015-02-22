@@ -31,11 +31,9 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
 
     private SignInButton btnSignIn;
     private Button startButton;
-    private TextView txtEmail;
     private TextView scoresTextView;
     private LinearLayout llProfileLayout;
     private LinearLayout questTypeLayout;
-    private LinearLayout genderTypeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,6 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
         scoresTextView = (TextView) findViewById(R.id.scoresTextView);
         llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
         questTypeLayout = (LinearLayout) findViewById(R.id.questTypeLayout);
-        genderTypeLayout = (LinearLayout) findViewById(R.id.genderTypeLayout);
 
         btnSignIn.setOnClickListener(this);
 
@@ -133,7 +130,6 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
             startButton.setVisibility(View.VISIBLE);
             startButton.setOnClickListener(this);
 
-            genderTypeLayout.setVisibility(View.VISIBLE);
             questTypeLayout.setVisibility(View.VISIBLE);
             scoresTextView.setVisibility(View.VISIBLE);
 
@@ -148,12 +144,9 @@ public class MainActivity extends Activity implements OnClickListener, Connectio
         try {
             if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
                 Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
-
                 //String personName = currentPerson.getDisplayName();
                 String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
                 int gender = currentPerson.getGender();
-
-                txtEmail.setText(email);
             } else {
                 Toast.makeText(getApplicationContext(), "Person information is null", Toast.LENGTH_LONG).show();
             }
